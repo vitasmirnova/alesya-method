@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Метод Алеси</title>
+<style>
+  :root{
+    --bg:#fcfbf7; --card:#ffffff; --line:#e3ddcd;
+    --gold:#a8842f; --plum:#543c7e; --violet:#7a5fa3; --pink:#c2557e;
+    --ink:#2e2740; --muted:#8a8197;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Georgia','Times New Roman',serif; color:var(--ink); line-height:1.6;
+    background:var(--bg); min-height:100vh; padding:0 18px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:54px 0 96px}
+
+  header{margin-bottom:8px}
+  h1{font-size:36px;font-weight:400;color:var(--ink);letter-spacing:.01em}
+
+  section{margin-top:50px}
+  .block-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+  .block-num{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;letter-spacing:.15em;color:var(--gold)}
+  h2{font-size:22px;font-weight:400;color:var(--ink)}
+  .block-note{font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic}
+
+  /* ---- accordion ---- */
+  details{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:15px 2px;display:flex;align-items:center;gap:16px;outline:none;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary:hover .mod-title,summary:hover .q{color:var(--plum)}
+  .chev{color:var(--muted);font-size:11px;transition:transform .22s;flex-shrink:0}
+  details[open] .chev{transform:rotate(90deg);color:var(--violet)}
+
+  .m-left{flex:1;min-width:0;display:flex;flex-direction:column}
+  .mod-sub{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--violet);margin-bottom:5px}
+  .mod-title{font-size:18px;color:var(--ink);transition:color .15s}
+  .date{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12.5px;color:var(--gold);
+    white-space:nowrap;flex-shrink:0;text-align:right}
+
+  .panel{padding:2px 2px 18px}
+  .lesson{display:flex;align-items:baseline;gap:12px;padding:8px 0}
+  .lesson .lname{flex:1;font-size:15px;color:#4a4159}
+  .lesson .lname em{color:var(--muted);font-style:italic;font-size:13px}
+  .ph{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11.5px;color:var(--violet);white-space:nowrap;flex-shrink:0}
+  .typage{font-style:italic;color:var(--violet);font-size:14px;line-height:1.8;padding:6px 0 0 0}
+
+  .faq-a{padding:0 2px 20px;font-size:15px;color:#4a4159;white-space:pre-line}
+  .faq-a .src{display:block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+  .q.mod-title{flex:1}
+
+  /* отделяем блок эфиров от основного расписания */
+  details.qa-sep{margin-top:24px;border-top:1px solid var(--line)}
+  details.qa-sep summary{padding-top:18px}
+
+  /* ---- feedback (left aligned) ---- */
+  .fb p{color:#4a4159;font-size:15px;margin-bottom:18px;max-width:480px}
+  .fb-btn{display:inline-block;font-family:'Helvetica Neue',Arial,sans-serif;font-size:14.5px;
+    background:var(--plum);color:#fff;border-radius:8px;padding:13px 28px;text-decoration:none}
+  .fb-ph{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11.5px;color:var(--muted);margin-top:10px;font-style:italic}
+  .divider{height:1px;background:var(--line);margin:26px 0}
+  .contacts .row{display:flex;align-items:baseline;gap:12px;margin:11px 0;font-size:15px}
+  .contacts .tag{font-family:'Helvetica Neue',Arial,sans-serif;font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);width:150px;flex-shrink:0}
+  .contacts a{color:var(--pink);text-decoration:none}
+  .contacts .ph{color:var(--muted);font-family:'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-style:italic}
+
+  footer{margin-top:54px;color:var(--muted);font-size:12px;
+    font-family:'Helvetica Neue',Arial,sans-serif;font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Метод Алеси</h1>
+  </header>
+
+  <!-- ============ 01 · РАСПИСАНИЕ ============ -->
+  <section>
+    <div class="block-head"><span class="block-num">01</span><h2>Расписание по модулям</h2></div>
+    <p class="block-note">Нажмите на модуль — раскроются уроки со ссылками на платформу</p>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 1</span><span class="mod-title">Предобучение</span></div>
+        <span class="date">3 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">1.1 · Как пользоваться платформой</span><span class="ph">[ссылка GetCourse]</span></div>
+        <div class="lesson"><span class="lname">1.2 · Ссылки на канал и чат курса</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 2</span><span class="mod-title">Точка сборки</span></div>
+        <span class="date">3 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">2.1 · Декларация ученицы</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">2.2 · Как устроен курс</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 3</span><span class="mod-title">Зов</span></div>
+        <span class="date">4 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">3.1 · Почему вы не знаете свой типаж</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">3.2 · Как наблюдать за собой</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">3.3 · Как тебя видят другие</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 4</span><span class="mod-title">Отражение</span></div>
+        <span class="date">3–5 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">4.1 · Q&A с Алесей</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">4.2 · Как изучать лицо</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">4.3 · Как изучать своё тело</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 5</span><span class="mod-title">Книга таинств</span></div>
+        <span class="date">6–10 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">5.1 · Колесо типажей</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">5.2–5.13 · 12 типажей</span><span class="ph">[12 уроков]</span></div>
+        <div class="typage">Нимфа · Волчица · Медведица · Птичка · Кошка · Оленёнок · Лисичка · Чертёнок · Зайка · Змейка · Куколка · Амазонка</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 6</span><span class="mod-title">Испытание</span></div>
+        <span class="date">13 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">Испытание по 12 типажам</span><span class="ph">[12 уроков]</span></div>
+        <div class="typage">Нимфа · Волчица · Медведица · Птичка · Кошка · Оленёнок · Лисичка · Чертёнок · Зайка · Змейка · Куколка · Амазонка</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 7</span><span class="mod-title">Практическая магия</span></div>
+        <span class="date">14 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">7.1 · Материалы: практическое руководство</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">7.2 · Посадка, пропорция и крой</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">7.3 · Цвет и я</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">7.4 · Дитейлз: аксессуары и обувь</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 8 · бонусный</span><span class="mod-title">Ведьмины секреты</span></div>
+        <span class="date">14 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">Лайфхаки: как внедрить изменения в гардероб без насилия и переплат</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Модуль 9</span><span class="mod-title">Сила трёх</span></div>
+        <span class="date">14 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">9.1 · Как собирать мудборд. Вебинар (для двух тарифов)</span><span class="ph">[ссылка]</span></div>
+        <div class="lesson"><span class="lname">9.2 · Видеоинструкция к ДЗ</span><span class="ph">[ссылка]</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        <div class="m-left"><span class="mod-sub">Финал · тариф «Максимальный»</span><span class="mod-title">Итоговый вебинар</span></div>
+        <span class="date">17 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">Итоговый вебинар</span><span class="ph">[ссылка · только «Максимальный»]</span></div>
+      </div>
+    </details>
+
+    <details class="qa-sep">
+      <summary>
+        <div class="m-left"><span class="mod-sub">Эфиры с Алесей</span><span class="mod-title">Q&A-сессии в Zoom</span></div>
+        <span class="date">5 и 12 мая</span><span class="chev">▶</span>
+      </summary>
+      <div class="panel">
+        <div class="lesson"><span class="lname">Прямой эфир вопрос-ответ</span><span class="ph">[ссылка на Zoom — в канале]</span></div>
+        <div class="lesson"><span class="lname">Записи эфиров</span><span class="ph">[платформа / YouTube]</span></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 02 · FAQ ============ -->
+  <section>
+    <div class="block-head"><span class="block-num">02</span><h2>Частые вопросы</h2></div>
+    <p class="block-note">Нажмите на вопрос, чтобы раскрыть ответ</p>
+
+    <details>
+      <summary><span class="q mod-title">Сколько времени будет доступ к урокам?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">Зависит от тарифа (после окончания курса):
+Минимальный — 3 месяца · Оптимальный — 6 месяцев · Максимальный — 8 месяцев
+<span class="src">Доступ к урокам</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Не открывается урок / проблема с доступом. Куда писать?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">Проблемы с платформой GetCourse → техподдержка прямо на платформе.
+Не пришло письмо или нет доступа → напишите Соне [@zz01jp].
+<span class="src">Поддержка</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Когда Q&A-эфиры с Алесей и будет ли запись?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">Эфиры в Zoom (5 и 12 мая), ссылка — в канале перед началом. Записи выкладываются на платформе и на YouTube.
+<span class="src">Эфиры</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Что такое баддинг и как участвовать?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">Знакомство с напарницей по курсу. Регистрация волнами по ссылке в канале, дальше связываетесь сами. Рассылка от [@anmedv] — при закрытом аккаунте сообщение может не дойти.
+<span class="src">Баддинг</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Какие бывают типажи?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">12 типажей: Нимфа, Волчица, Медведица, Птичка, Кошка, Оленёнок, Лисичка, Чертёнок, Зайка, Змейка, Куколка, Амазонка.
+<span class="src">Типажи</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Вопросы по стоимости и оплате</span><span class="chev">▶</span></summary>
+      <div class="faq-a">В канале не дублируются. По цене, тарифам, рассрочке и возврату — напишите Соне [@zz01jp].
+<span class="src">Оплата</span></div>
+    </details>
+
+    <details>
+      <summary><span class="q mod-title">Как закрепить канал?</span><span class="chev">▶</span></summary>
+      <div class="faq-a">Зажмите название канала в списке чатов и выберите «Закрепить». Писать в канале нельзя — он только для чтения.
+<span class="src">Канал</span></div>
+    </details>
+  </section>
+
+  <!-- ============ 03 · ОБРАТНАЯ СВЯЗЬ ============ -->
+  <section>
+    <div class="block-head"><span class="block-num">03</span><h2>Обратная связь</h2></div>
+    <div class="fb">
+      <p>Поделитесь впечатлениями о курсе — мы читаем каждый ответ.</p>
+      <a class="fb-btn" href="#">Оставить отзыв →</a>
+      <div class="fb-ph">[кнопка ведёт на Google-форму обратной связи]</div>
+
+      <div class="divider"></div>
+
+      <div class="contacts">
+        <div class="row"><span class="tag">Контакты для связи</span><span><a href="#">@username</a> <span class="ph">[чат в Telegram]</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Демо-макет</footer>
+
+</div>
+</body>
+</html>
