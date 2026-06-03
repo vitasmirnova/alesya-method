@@ -13,8 +13,11 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:'Georgia','Times New Roman',serif; color:var(--ink); line-height:1.6;
-    background:radial-gradient(135% 55% at 50% -8%, #f7efdd 0%, var(--bg) 52%) no-repeat var(--bg);
-    background-attachment:fixed; min-height:100vh; padding:0 18px; -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(120% 45% at 50% 0%, #f7efdd 0%, transparent 50%),
+      radial-gradient(120% 45% at 50% 100%, #f7efdd 0%, transparent 50%),
+      var(--bg);
+    background-repeat:no-repeat; min-height:100vh; padding:0 18px; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:680px;margin:0 auto;padding:54px 0 96px}
 
