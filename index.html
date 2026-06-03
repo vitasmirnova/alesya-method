@@ -14,10 +14,13 @@
   body{
     font-family:'Georgia','Times New Roman',serif; color:var(--ink); line-height:1.6;
     background:
-      radial-gradient(120% 45% at 50% 0%, #f7efdd 0%, transparent 50%),
-      radial-gradient(120% 45% at 50% 100%, #f7efdd 0%, transparent 50%),
+      linear-gradient(180deg, #f7efdd 0%, transparent 100%),
+      linear-gradient(0deg, #f7efdd 0%, transparent 100%),
       var(--bg);
-    background-repeat:no-repeat; min-height:100vh; padding:0 18px; -webkit-font-smoothing:antialiased;
+    background-repeat:no-repeat;
+    background-size:100% 11%, 100% 11%;
+    background-position:top, bottom;
+    min-height:100vh; padding:0 18px; -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:680px;margin:0 auto;padding:54px 0 96px}
 
